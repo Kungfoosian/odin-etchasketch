@@ -3,11 +3,11 @@ function updateSlider(newGridSize) {
 }
 
 function addRows(gridSize) {
-
-    for (let i = 0; i < gridSize; i++) {
+    let rowsToAdd = gridSize === currentGridSize? gridSize: gridSize - currentGridSize;
+    for (let i = 0; i < rowsToAdd; i++) {
         const etchRow = document.createElement('div');
         etchRow.classList.add('etch-row')
-        etchRow.setAttribute('id', `row-${i}`);
+        etchRow.setAttribute('id', `row-${currentGridSize++}`);
         
         etchContainer.appendChild(etchRow);
     }
@@ -40,9 +40,11 @@ function createGrid(gridSize) {
     addSquares(gridSize);
 }
 
-function initializeGrid(gridSize) {
-    createGrid(gridSize);
-    updateSlider(gridSize);
+function initializeGrid() {
+    console.log('helo');
+    currentGridSize = 0;
+    createGrid(DEFAULT_CANVAS_SIZE);
+    updateSlider(DEFAULT_CANVAS_SIZE);
 }
 
 // function colorSquare(e){
@@ -66,15 +68,18 @@ const sliderOutput = document.querySelector('#slider-output');
 
 const MAX_CANVAS_SIZE = 960; //px
 const DEFAULT_CANVAS_SIZE = 16; // 16x16 squares
+let currentGridSize = 0;
 
 
-initializeGrid(DEFAULT_CANVAS_SIZE);
+initializeGrid();
 
 slider.addEventListener('input', () => {
     let newSize = slider.value;
     updateSlider(newSize);
-    // createGrid(newSize)
-    addRows(newSize);
+    // createGrid(newSize) // currently working
+    if(newSize > currentGridSize) addRows(newSize);
+    // addRows(newSize);
+    currentGridSize = newSize;
 }); 
 
 
