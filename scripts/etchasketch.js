@@ -20,7 +20,13 @@ function addRows(gridSize) {
 }
 
 function removeRows(gridSize) {
-    
+    let rowsToRemove = previousGridSize - gridSize;
+
+    for (let i = 1; i <= rowsToRemove; i++) {
+        const etchRow = document.getElementById(`row-${previousGridSize-i}`);
+        etchContainer.removeChild(etchRow);
+    }
+
 }
 
 
@@ -65,6 +71,33 @@ function addSquares(gridSize) {
             }
         }
     }
+}
+
+function removeSquares(gridSize) {
+    let squaresToRemove = previousGridSize - gridSize;
+
+    let squareSize = MAX_CANVAS_SIZE / gridSize;
+
+    for (let i = 0; i < gridSize; i++ ){
+        const currentRow = document.getElementById(`row-${i}`);
+
+        for (let j = 0; j < squaresToRemove; j++) { // Remove last squares equal to amount of squares needed to remove
+            const currentSquare = currentRow.lastChild;
+            
+            currentRow.removeChild(currentSquare);
+        }
+
+        for (let j = 0; j < gridSize; j++) { // Resize current squares
+            const currentSquare = currentRow.children[j];
+            
+            currentSquare.style.width = `${squareSize}px`;
+            currentSquare.style.height = currentSquare.style.width;
+            
+            
+        }
+    }
+
+
 }
 
 
@@ -119,6 +152,10 @@ slider.addEventListener('input', () => {
     if(currentGridSize > previousGridSize) {
         addRows(currentGridSize);
         addSquares(currentGridSize);
+    }
+    else if (currentGridSize < previousGridSize) {
+        removeRows(currentGridSize);
+        removeSquares(currentGridSize);
     }
 }); 
 
