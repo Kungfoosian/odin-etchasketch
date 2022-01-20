@@ -115,13 +115,6 @@ function initializeGrid() {
     updateSlider(DEFAULT_CANVAS_SIZE);
 }
 
-// function colorSquare(e){
-//     console.log(e);
-//     e.classList.add('black');
-// }
-
-
-
 
 
    
@@ -147,7 +140,6 @@ slider.addEventListener('input', () => {
     currentGridSize = parseInt(slider.value);
 
     updateSlider(currentGridSize);
-    // createGrid(newSize) // currently working
 
     if(currentGridSize > previousGridSize) {
         addRows(currentGridSize);
@@ -160,25 +152,7 @@ slider.addEventListener('input', () => {
 }); 
 
 
-// const etchSquares = document.querySelectorAll('.etch-square');
-
-
-// etchSquares.forEach(etchSquare => {
-//     etchSquare.addEventListener('mouseover', () => {
-//         // console.log('hover');
-//         etchSquare.classList.add('black');
-//     })
-// });
-
-
 document.addEventListener('mouseover', e => {
-    // if(e.target.className === 'etch-square') console.log(e.target.classList[0]);
     if(e.target.classList[0] === 'etch-square') e.target.classList.add('black');
 
 })
-
-
-// document.addEventListener('mouseover', function() {
-//     console.log(this);
-// })
-// 
