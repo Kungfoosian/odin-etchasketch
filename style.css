@@ -6,21 +6,53 @@ body {
     margin: 20px;
 }
 
-.everything-container {
+.everything-container, .adjustment-container {
     border: 1px solid red;
 }
 
-.etch-square{
+
+.etch-container{
     border: 1px solid silver;
 }
 
-.everything-container, .slidecontainer, .etch-container, .etch-row {
+.everything-container, .adjustment-container, .slidecontainer, .etch-container, .etch-row {
     display:flex;
 }
+
 
 .everything-container {
     flex-direction:column;
     align-items: center;
+}
+
+.adjustment-container {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;;
+}
+
+#clear-btn {
+    background-color: #f44336;
+    border: 2px solid white;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+    transition-duration: 0.4s;
+}
+
+#clear-btn:hover {
+    border: 2px solid #f44336;
+    background-color: white;
+    color:black;
+}
+
+#clear-btn:active {
+    transform: translateY(4px);
 }
 
 .slidecontainer {
@@ -59,19 +91,25 @@ body {
     cursor: pointer;
 }
 
+#slider-output {
+    margin: auto 10px;
+    font-family: arial;
+}
+
 
 .etch-container {
     flex-direction: column;
     width:960px;
+    /* height: auto; */
 }
 
 .etch-row {
     justify-content: center;
 }
 
-/* .etch-square {
-    
-} */
+.etch-square {
+    flex:1;
+}
 
 .black {
     background-color: black;

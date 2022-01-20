@@ -92,6 +92,8 @@ function removeSquares(gridSize) {
 
 
 function createGrid(gridSize) {
+    etchContainer.innerText='';
+
     addRows(gridSize);
     addSquares(gridSize);
 }
@@ -103,6 +105,13 @@ function initializeGrid() {
     updateSlider(DEFAULT_CANVAS_SIZE);
 }
 
+function clearGrid() {
+    const coloredSquares = Array.from(document.getElementsByClassName('etch-square black'));
+
+    coloredSquares.forEach(square => {
+        square.classList.remove('black');
+    })
+}
 
 
    
@@ -113,9 +122,9 @@ function initializeGrid() {
 const etchContainer = document.querySelector('.etch-container');
 const slider = document.querySelector('#myRange');
 const sliderOutput = document.querySelector('#slider-output');
+const btnClear = document.querySelector('#clear-btn');
 
-
-const MAX_CANVAS_SIZE = 960; //px
+const MAX_CANVAS_SIZE = etchContainer.offsetWidth; //px
 const DEFAULT_CANVAS_SIZE = 16; // 16x16 squares
 let currentGridSize = DEFAULT_CANVAS_SIZE;
 let previousGridSize = 0;
@@ -144,3 +153,5 @@ document.addEventListener('mouseover', e => {
     if(e.target.classList[0] === 'etch-square') e.target.classList.add('black');
 
 })
+
+btnClear.addEventListener('click', clearGrid);
