@@ -40,7 +40,7 @@ function addSquares(gridSize) {
     for (let i = 0; i < gridSize; i++ ){
         const currentRow = document.getElementById(`row-${i}`);
 
-        if(currentRow.children.length !== 0) { // If current row not empty, resize current squares to make room for new ones
+        if(currentRow.children.length !== 0) { // If current row not empty, resize existing squares to make room for new ones
             for (let j = 0; j < previousGridSize; j++) {
                 const existingSquare = currentRow.children[j];
                 resizeSquare(existingSquare, gridSize);
@@ -74,7 +74,7 @@ function removeSquares(gridSize) {
     for (let i = 0; i < gridSize; i++ ){
         const currentRow = document.getElementById(`row-${i}`);
 
-        for (let j = 0; j < squaresToRemove; j++) { // Remove last squares equal to amount of squares needed to remove
+        for (let j = 0; j < squaresToRemove; j++) { // Remove squares equal to amount of squares needed to remove
             const currentSquare = currentRow.lastChild;
             currentRow.removeChild(currentSquare);
         }
