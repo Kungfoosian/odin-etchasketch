@@ -29,69 +29,59 @@ function removeRows(gridSize) {
 
 }
 
-
-//  Work on adding new squares, need functions to remove rows and squares, and update current grid size
-function addSquares(gridSize) {
-    let squaresToAdd = gridSize === previousGridSize? gridSize: gridSize - previousGridSize;
-
+function resizeSquare(square, gridSize) {
     let squareSize = MAX_CANVAS_SIZE / gridSize;
+    square.style.width = `${squareSize}px`;
+    square.style.height = `${squareSize}px`;
+}
+
+function addSquares(gridSize) {
 
     for (let i = 0; i < gridSize; i++ ){
         const currentRow = document.getElementById(`row-${i}`);
 
-        if(currentRow.children.length !== 0) { // If current row not empty, resize current squares AND add new squares
+        if(currentRow.children.length !== 0) { // If current row not empty, resize current squares to make room for new ones
             for (let j = 0; j < previousGridSize; j++) {
                 const existingSquare = currentRow.children[j];
-                existingSquare.style.width = `${squareSize}px`;
-                existingSquare.style.height = existingSquare.style.width;
+                resizeSquare(existingSquare, gridSize);
             }
+        }
         
-          // Add new Squares
+        // Add new squares
+        if(currentRow.children.length !== gridSize) {
+            let squaresToAdd = gridSize - currentRow.children.length;
+        
             for (let j = 0; j < squaresToAdd; j++) {
-                const etchSquare = document.createElement('div');
+                const newSquare = document.createElement('div');
                 
-                etchSquare.style.width = `${squareSize}px`;
-                etchSquare.style.height = etchSquare.style.width;
-                etchSquare.classList.add('etch-square');
+                resizeSquare(newSquare, gridSize);
+                newSquare.classList.add('etch-square');
                 
                 
-                currentRow.appendChild(etchSquare);
+                currentRow.appendChild(newSquare);
             }
         }
-        else {
-            for (let j = 0; j < currentGridSize; j++) {
-                const etchSquare = document.createElement('div');
-                
-                etchSquare.style.width = `${squareSize}px`;
-                etchSquare.style.height = etchSquare.style.width;
-                etchSquare.classList.add('etch-square');
-                
-                
-                currentRow.appendChild(etchSquare);
-            }
-        }
+
+
+
     }
 }
 
 function removeSquares(gridSize) {
     let squaresToRemove = previousGridSize - gridSize;
 
-    let squareSize = MAX_CANVAS_SIZE / gridSize;
 
     for (let i = 0; i < gridSize; i++ ){
         const currentRow = document.getElementById(`row-${i}`);
 
         for (let j = 0; j < squaresToRemove; j++) { // Remove last squares equal to amount of squares needed to remove
             const currentSquare = currentRow.lastChild;
-            
             currentRow.removeChild(currentSquare);
         }
 
         for (let j = 0; j < gridSize; j++) { // Resize current squares
             const currentSquare = currentRow.children[j];
-            
-            currentSquare.style.width = `${squareSize}px`;
-            currentSquare.style.height = currentSquare.style.width;
+            resizeSquare(currentSquare,gridSize);
             
             
         }
@@ -102,8 +92,6 @@ function removeSquares(gridSize) {
 
 
 function createGrid(gridSize) {
-    etchContainer.innerText = '';
-
     addRows(gridSize);
     addSquares(gridSize);
 }
