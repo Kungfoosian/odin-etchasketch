@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Odin - Etch-a-Sketch</title>
+    <title>Odin - Sketch-an-Etch</title>
     <script src="./scripts/etchasketch.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -20,12 +20,21 @@
                 <button id='clear-btn'>Clear</button>
             </div>
         </div>
-    
-        <div class="etch-container"></div>
+        
+        <div class='etch-shell-container'>
+            <p class='etch-title'>Sketch-an-Etch</p>
+            <div class="etch-container"></div>
+            <div class='etch-btn-container'>
+                <button class='dummy-btn'></button>
+                <button class='dummy-btn'></button>
+            </div>
+        </div>
 
 
     </div>
 
-
+    <footer>
+        <p>Odin Project 2022 - Sketch-an-Etch by Anthony</p>
+    </footer>
 </body>
 </html>
