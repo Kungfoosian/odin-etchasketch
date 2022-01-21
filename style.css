@@ -99,8 +99,8 @@ body {
 
 .etch-container {
     flex-direction: column;
-    width:960px;
-    /* height: auto; */
+    /* width:544px;
+    height: 544px; */
 }
 
 .etch-row {

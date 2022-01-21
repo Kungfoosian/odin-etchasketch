@@ -91,6 +91,7 @@ function removeSquares(gridSize) {
 }
 
 
+
 function createGrid(gridSize) {
     etchContainer.innerText='';
 
@@ -113,6 +114,16 @@ function clearGrid() {
     })
 }
 
+function setGridSize() {
+    MAX_CANVAS_SIZE = window.innerWidth / 2;
+    etchContainer.style.width = `${MAX_CANVAS_SIZE}px`;
+    etchContainer.style.height = `${MAX_CANVAS_SIZE}px`;
+
+    //Resize the squares also
+    const squares = Array.from(document.querySelectorAll('.etch-square'));
+    squares.forEach(square => resizeSquare(square,currentGridSize));
+}
+
 
    
   //\\                 //\\    
@@ -124,7 +135,7 @@ const slider = document.querySelector('#myRange');
 const sliderOutput = document.querySelector('#slider-output');
 const btnClear = document.querySelector('#clear-btn');
 
-const MAX_CANVAS_SIZE = etchContainer.offsetWidth; //px
+let MAX_CANVAS_SIZE = window.innerWidth / 2; //px
 const DEFAULT_CANVAS_SIZE = 16; // 16x16 squares
 let currentGridSize = DEFAULT_CANVAS_SIZE;
 let previousGridSize = 0;
@@ -155,3 +166,7 @@ document.addEventListener('mouseover', e => {
 })
 
 btnClear.addEventListener('click', clearGrid);
+
+window.addEventListener('resize', setGridSize)
+
+
